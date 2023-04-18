@@ -1,13 +1,16 @@
+import 'package:flutter_clean_architeture/features/search_users/domain/entities/address_entity.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/entities/company_entity.dart';
+
 class UserEntity {
-  String nome;
-  String telefone;
-  String cidade;
-  String compania;
+  String? name;
+  String? phone;
+  AddressEntity? address;
+  CompanyEntity? company;
 
   UserEntity({
-    required this.nome,
-    required this.telefone,
-    required this.cidade,
-    required this.compania,
+    this.name,
+    this.phone,
+    this.address,
+    this.company,
   });
 }
