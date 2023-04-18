@@ -7,12 +7,19 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Clean Architecture',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
+      initialRoute: '/',
+      routes: {
+        /*     'spalsh':(context) =>  Splashpage()
+        'home':(context) => HomePage() */
+      },
     );
   }
 }
