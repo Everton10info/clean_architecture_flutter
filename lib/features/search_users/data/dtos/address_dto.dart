@@ -2,10 +2,9 @@ import 'package:flutter_clean_architeture/features/search_users/domain/entities/
 
 class Address extends AddressEntity {
   Address({
-    street,
-    suite,
-    city,
-    zipcode,
+    super.street,
+    super.city,
+    super.zipcode,
   });
 
   static Address fromJson(Map<String, dynamic> json) {

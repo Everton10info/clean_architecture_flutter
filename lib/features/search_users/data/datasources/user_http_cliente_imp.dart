@@ -6,7 +6,7 @@ class HttpClienteImp implements AppClient {
   late final String baseUrl;
 
   HttpClienteImp._internal() {
-    baseUrl = AppEnvironment.baseUrl;
+    baseUrl = ApiUrl.url;
   }
 
   static final _singleton = HttpClienteImp._internal();
@@ -14,8 +14,8 @@ class HttpClienteImp implements AppClient {
   factory HttpClienteImp() => _singleton;
   @override
   Future<dynamic> get() async {
+    String uri = baseUrl;
     String path = '/users';
-    var uri = baseUrl;
 
     http.Response response = await http.get(Uri.parse(uri + path));
 

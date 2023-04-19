@@ -1,28 +1,22 @@
 import 'package:flutter_clean_architeture/features/search_users/domain/entities/user_entity.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/repositories/users_repository.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/usecases/search_user/search_user_usecase.dart';
 
-class SearchUserImpl implements SearchUser {
-  final UserRepository repository;
-  List<UserEntity> listUser;
-
-  SearchUserImpl(
-    this.repository,
-    this.listUser,
-  );
-
+class SearchUserImp implements SearchUser {
   @override
-  List<UserEntity> search(String valueSearch, List<UserEntity> users) {
-    var search = <UserEntity>[];
-    var contains = users.where(
-      (element) => element.name!.contains(valueSearch),
+  List<UserEntity> call(String nameUser, List<UserEntity> users) {
+    var searchList = <UserEntity>[];
+    var contain = users.where(
+      (element) => element.name!.toString().toLowerCase().trim().contains(
+            nameUser.trim().toLowerCase(),
+          ),
     );
-    if (contains.isEmpty) {
-      search.addAll(users);
+
+    if (contain.isEmpty) {
+      searchList.addAll(users);
     } else {
-      search.addAll(contains);
+      searchList.addAll(contain);
     }
 
-    return search;
+    return searchList;
   }
 }

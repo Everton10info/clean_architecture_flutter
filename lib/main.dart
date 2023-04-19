@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architeture/features/search_users/data/datasources/user_http_cliente_imp.dart';
+import 'package:flutter_clean_architeture/features/search_users/data/repositories/user_repository_imp.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/usecases/show_list_users/show_list_users_imp.dart';
+import 'package:flutter_clean_architeture/features/search_users/presenter/controllers/home_page_controller.dart';
 import 'package:flutter_clean_architeture/features/search_users/presenter/pages/home_page.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
@@ -20,7 +22,14 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage()
+        '/': (context) => HomePage(
+                controller: HomeController(
+              ShowUsersImp(
+                userRepository: UserRepositoryImp(
+                  HttpClienteImp(),
+                ),
+              ),
+            ))
         /*     'spalsh':(context) =>  Splashpage()
         'home':(context) => HomePage() */
       },
