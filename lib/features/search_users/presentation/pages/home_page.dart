@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/entities/user_entity.dart';
 import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/home_page_controller.dart';
 import 'package:flutter_clean_architeture/features/search_users/presentation/pages/details_user_page.dart';
 
@@ -18,11 +17,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var textController = TextEditingController();
-  var showListScreen = ValueNotifier<List<UserEntity>>([]);
+
   @override
   void initState() {
     widget.controller.displayUsers();
-
     super.initState();
   }
 

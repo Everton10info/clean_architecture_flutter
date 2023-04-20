@@ -1,3 +1,3 @@
-abstract class AppClient {
+abstract class AppHttpClient {
   Future<dynamic> get();
 }

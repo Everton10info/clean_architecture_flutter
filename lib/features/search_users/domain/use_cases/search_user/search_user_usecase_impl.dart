@@ -11,8 +11,6 @@ class SearchUserImpl implements SearchUsers {
           ),
     );
 
-    print(result.toList().toString());
-
     if (result.isEmpty) {
       searchList.addAll(users);
     } else {

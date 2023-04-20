@@ -29,7 +29,7 @@ class HomeController {
     });
   }
 
-  searchUse(String name) {
+  void searchUse(String name) {
     showUserList.value = searchUsers(name, userList.value);
   }
 }
