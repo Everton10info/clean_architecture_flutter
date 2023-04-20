@@ -11,6 +11,7 @@ class ShowUsersImp implements ShowhUsers {
 
   @override
   Future<List<UserEntity>> call() async {
+    await Future.delayed(const Duration(seconds: 1));
     return await userRepository.getListUser();
   }
 }

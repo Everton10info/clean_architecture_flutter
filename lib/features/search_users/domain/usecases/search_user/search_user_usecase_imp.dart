@@ -17,6 +17,8 @@ class SearchUserImp implements SearchUser {
       searchList.addAll(contain);
     }
 
+    contain = [];
+
     return searchList;
   }
 }

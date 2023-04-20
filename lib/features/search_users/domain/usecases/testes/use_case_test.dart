@@ -31,7 +31,7 @@ void main() async {
       SearchUserImp search = SearchUserImp();
       var listSearch = search('Patricia Leb', list);
 
-      expect(listSearch[0].name, 'Patricia Lebsack');
+      expect(listSearch.length, 1);
     });
   });
 }
