@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architeture/core/config/theme/app_theme.dart';
 import 'package:flutter_clean_architeture/features/search_users/data/datasources/user_http_cliente_imp.dart';
 import 'package:flutter_clean_architeture/features/search_users/data/repositories/user_repository_imp.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/usecases/search_user/search_user_usecase_imp.dart';
@@ -20,12 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Clean Architecture',
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            color: Color.fromARGB(255, 114, 166, 209),
-          ),
-          scaffoldBackgroundColor: Colors.green[200],
-          cardColor: const Color.fromARGB(255, 218, 207, 110)),
+      theme: AppTheme.appTheme,
       initialRoute: HomePage.page,
       routes: {
         HomePage.page: (context) => HomePage(
