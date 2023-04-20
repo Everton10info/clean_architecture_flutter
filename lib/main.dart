@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architeture/core/config/theme/app_theme.dart';
-import 'package:flutter_clean_architeture/features/search_users/data/datasources/user_http_cliente_imp.dart';
-import 'package:flutter_clean_architeture/features/search_users/data/repositories/user_repository_imp.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/usecases/search_user/search_user_usecase_imp.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/usecases/show_details_user/show_detais_user_imp.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/usecases/show_list_users/show_list_users_imp.dart';
-import 'package:flutter_clean_architeture/features/search_users/presenter/controllers/home_page_controller.dart';
-import 'package:flutter_clean_architeture/features/search_users/presenter/pages/details_user_page.dart';
-import 'package:flutter_clean_architeture/features/search_users/presenter/pages/home_page.dart';
+import 'package:flutter_clean_architeture/features/search_users/data/data_sources/user_http_cliente_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/data/repositories/user_repository_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/search_user/search_user_usecase_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_details_user/show_detais_user_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_list_users/show_list_users_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/home_page_controller.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/pages/details_user_page.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/pages/home_page.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -26,16 +26,16 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.page: (context) => HomePage(
               controller: HomeController(
-                ShowUsersImp(
-                  userRepository: UserRepositoryImp(
-                    HttpClienteImp(),
+                ShowUsersImpl(
+                  userRepository: UserRepositoryImpl(
+                    HttpClienteImpl(),
                   ),
                 ),
-                SearchUserImp(),
+                SearchUserImpl(),
               ),
             ),
         DetailsUserPage.page: (context) => DetailsUserPage(
-              showDetaislUser: ShowDetailsUserImp(),
+              showDetaislUser: ShowDetailsUserImpl(),
             )
       },
     );

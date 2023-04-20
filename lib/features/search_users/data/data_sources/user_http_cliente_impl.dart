@@ -2,16 +2,16 @@ import 'package:flutter_clean_architeture/core/api/app_env.dart';
 import 'package:flutter_clean_architeture/core/http/http_client.dart';
 import 'package:http/http.dart' as http;
 
-class HttpClienteImp implements AppClient {
+class HttpClienteImpl implements AppClient {
   late final String baseUrl;
 
-  HttpClienteImp._internal() {
+  HttpClienteImpl._internal() {
     baseUrl = ApiUrl.url;
   }
 
-  static final _singleton = HttpClienteImp._internal();
+  static final _singleton = HttpClienteImpl._internal();
 
-  factory HttpClienteImp() => _singleton;
+  factory HttpClienteImpl() => _singleton;
   @override
   Future<dynamic> get() async {
     String uri = baseUrl;
@@ -20,6 +20,7 @@ class HttpClienteImp implements AppClient {
     http.Response response = await http.get(Uri.parse(uri + path));
 
     if (response.statusCode == 200) {
+      print(response.body);
       return response.body;
     } else {
       return response.statusCode;

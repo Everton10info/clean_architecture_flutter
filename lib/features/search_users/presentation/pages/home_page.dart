@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/entities/user_entity.dart';
-import 'package:flutter_clean_architeture/features/search_users/presenter/controllers/home_page_controller.dart';
-import 'package:flutter_clean_architeture/features/search_users/presenter/pages/details_user_page.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/home_page_controller.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/pages/details_user_page.dart';
 
 class HomePage extends StatefulWidget {
   static String page = 'homePage';
@@ -22,13 +22,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     widget.controller.displayUsers();
-    showListScreen = widget.controller.showList;
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final users = widget.controller.showUserList;
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Expanded(
-                  flex: 1,
                   child: Text(
                     'User List',
                     style: TextStyle(
@@ -54,16 +53,32 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Expanded(
+                  child: TextFormField(
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Color.fromARGB(255, 89, 128, 195),
+                    ),
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      hintText: 'search users',
+                      hintStyle: TextStyle(color: Colors.blueGrey),
+                    ),
+                    onChanged: (value) {
+                      widget.controller.searchUse(value);
+                    },
+                  ),
+                ),
+                Expanded(
                     flex: 9,
                     child: ValueListenableBuilder(
-                      valueListenable: showListScreen,
-                      builder: (context, users, child) {
+                      valueListenable: users,
+                      builder: (context, user, child) {
                         return widget.controller.loader.value
                             ? const Center(
                                 child: CircularProgressIndicator(),
                               )
                             : ListView.builder(
-                                itemCount: users.length,
+                                itemCount: user.length,
                                 itemBuilder: (context, index) {
                                   return Card(
                                       elevation: 4,
@@ -73,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                                           height: 40,
                                           child: ListTile(
                                             leading: Text(
-                                              users[index].name!,
+                                              user[index].name!,
                                               style: const TextStyle(
                                                 fontSize: 16,
                                                 color: Color.fromARGB(
@@ -88,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                                             onTap: () {
                                               Navigator.of(context).pushNamed(
                                                   DetailsUserPage.page,
-                                                  arguments: users[index]);
+                                                  arguments: user[index]);
                                             },
                                           ),
                                         ),

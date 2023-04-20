@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/entities/user_entity.dart';
-
-import 'package:flutter_clean_architeture/features/search_users/domain/usecases/show_details_user/show_detais_user_imp.dart';
+import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_details_user/show_detais_user_impl.dart';
 
 class DetailsUserPage extends StatefulWidget {
   static String page = '/detailsPage';
-  final ShowDetailsUserImp showDetaislUser;
+  final ShowDetailsUserImpl showDetaislUser;
   const DetailsUserPage({
     Key? key,
     required this.showDetaislUser,
