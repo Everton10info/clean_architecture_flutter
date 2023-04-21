@@ -5,6 +5,7 @@ import 'package:flutter_clean_architeture/features/search_users/data/repositorie
 import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/search_user/search_user_usecase_impl.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_details_user/show_detais_user_impl.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_list_users/show_list_users_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/details_page_controller.dart';
 import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/home_page_controller.dart';
 import 'package:flutter_clean_architeture/features/search_users/presentation/pages/details_user_page.dart';
 import 'package:flutter_clean_architeture/features/search_users/presentation/pages/home_page.dart';
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
               ),
             ),
         DetailsUserPage.page: (context) => DetailsUserPage(
-              showDetaislUser: ShowDetailsUserImpl(),
+              detailsController: DetailsController(
+                ShowDetailsUserImpl(),
+              ),
             )
       },
     );

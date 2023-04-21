@@ -1,14 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architeture/features/search_users/domain/entities/user_entity.dart';
-import 'package:flutter_clean_architeture/features/search_users/domain/use_cases/show_details_user/show_detais_user_impl.dart';
+import 'package:flutter_clean_architeture/features/search_users/presentation/controllers/details_page_controller.dart';
 
 class DetailsUserPage extends StatefulWidget {
   static String page = '/detailsPage';
-  final ShowDetailsUserImpl showDetaislUser;
+  final DetailsController detailsController;
   const DetailsUserPage({
     Key? key,
-    required this.showDetaislUser,
+    required this.detailsController,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class _DetailsUserPageState extends State<DetailsUserPage> {
   @override
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as UserEntity;
-    final detaisList = widget.showDetaislUser(user);
+    final detaisList = widget.detailsController.showDetailsUser(user);
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -39,7 +39,7 @@ class _DetailsUserPageState extends State<DetailsUserPage> {
                   child: Card(
                       elevation: 4,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
