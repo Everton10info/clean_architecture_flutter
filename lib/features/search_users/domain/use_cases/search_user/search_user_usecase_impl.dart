@@ -4,7 +4,7 @@ import 'package:flutter_clean_architeture/features/search_users/domain/use_cases
 class SearchUserImpl implements SearchUsers {
   @override
   List<UserEntity> call(String nameUser, List<UserEntity> users) {
-    var searchList = <UserEntity>[];
+    // var searchList = <UserEntity>[];
     var result = users.where(
       (element) => element.name!.toString().toLowerCase().trim().contains(
             nameUser.trim().toLowerCase(),
@@ -12,11 +12,9 @@ class SearchUserImpl implements SearchUsers {
     );
 
     if (result.isEmpty) {
-      searchList.addAll(users);
+      return users;
     } else {
-      searchList.addAll(result);
+      return result.toList();
     }
-
-    return searchList;
   }
 }
