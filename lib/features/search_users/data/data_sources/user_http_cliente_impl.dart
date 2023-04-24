@@ -30,7 +30,7 @@ class HttpClienteImpl implements AppHttpClient {
       listUser = res.map((e) => User.fromJson(e)).toList();
       return listUser;
     } else {
-      return throw (response.statusCode);
+      throw (response.statusCode);
     }
   }
 }
