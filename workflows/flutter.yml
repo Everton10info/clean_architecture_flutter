@@ -1,0 +1,44 @@
+name: Flutter CI
+
+# Define os eventos que irão disparar o workflow
+on:
+  workflow_dispatch:  # Adicionando o trigger manual para disparar o workflow manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Escolha o sistema operacional que você deseja: "ubuntu-latest", "macos-latest" ou "windows-latest"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Faz o checkout do código-fonte do repositório
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.7.0'  # Versão do Flutter que você está usando no seu projeto
+
+      - name: Install dependencies
+        run: flutter pub get  # Instala as dependências do projeto Flutter
+
+      - name: Run tests
+        run: flutter test  # Executa os testes do Flutter
+
+      - name: Build APK for Android
+        run: flutter build apk --release  # Cria o APK para Android em modo release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release-apk  # Nome do artefato
+          path: build/app/outputs/flutter-apk/app-release.apk  # Caminho para o arquivo APK gerado
+
+      - name: Build iOS app
+        if: runner.os == 'macOS'  # Só será executado em runners macOS
+        run: flutter build ios --release  # Cria o arquivo IPA para iOS em modo release
+
+      - name: Upload IPA artifact (iOS)
+        if: runner.os == 'macOS'  # Só será executado em runners macOS
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release-ipa  # Nome do artefato
+          path: build/ios/iphoneos/Runner.app  # Caminho para o arquivo IPA gerado
