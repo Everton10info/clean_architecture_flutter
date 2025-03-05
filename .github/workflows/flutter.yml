@@ -16,25 +16,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.7.0'  # Versão do Flutter que você está usando no seu projeto
-
-      - name: upadate  flutter
-        run: flutter upgrade
-        
-      - name: upadate  dependencies
-        run: flutter pub upgrade
         
       - name: Instala as dependências do projeto Flutter
         run: flutter pub get  
         
-      - name: Update Gradle Wrapper to latest version
-        run: |
-          cd android
-          ./gradlew wrapper --gradle-version 7.4.2  # Atualiza o Gradle Wrapper para a versão mais recente
-
-      - name: Update Android Gradle Plugin version
-        run: |
-          sed -i 's/com.android.tools.build:gradle:[^"]*/com.android.tools.build:gradle:7.4.2/' android/build.gradle  # Atualiza o Android Gradle Plugin para a versão mais recente
-
       - name: Run tests
         run: flutter test  # Executa os testes do Flutter
 
