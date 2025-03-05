@@ -17,8 +17,14 @@ jobs:
         with:
           flutter-version: '3.7.0'  # Versão do Flutter que você está usando no seu projeto
 
-      - name: Install dependencies
-        run: flutter pub get  # Instala as dependências do projeto Flutter
+      - name: upadate  flutter
+        run: flutter upgrade
+        
+      - name: upadate  dependencies
+        run: flutter pub upgrade
+        
+      - name: Instala as dependências do projeto Flutter
+        run: flutter pub get  
 
       - name: Run tests
         run: flutter test  # Executa os testes do Flutter
